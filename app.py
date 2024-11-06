@@ -1,8 +1,10 @@
+from flask import Flask, render_template # type: ignore
 from flask import Flask, request, jsonify, render_template
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime, timezone
 import http.client
 import json
+
 
 app =Flask(__name__)
 #Configruación de la base de datos SQLITE-test
