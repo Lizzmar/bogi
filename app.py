@@ -5,7 +5,7 @@ import http.client
 import json
 
 app =Flask(__name__)
-#Configruación de la base de datos SQLITE
+#Configruación de la base de datos SQLITE-test
 app.config['SQLALCHEMY_DATABASE_URI']= 'sqlite:///metapython.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
