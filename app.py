@@ -19,11 +19,23 @@ class Log(db.Model):
 with app.app_context():
     db.create_all()
 
+    prueba1 = Log(texto='Mensaje de Prueba 1')
+    prueba2 = Log(texto='Mensaje de Prueba 2')
+
+    db.session.add(prueba1)
+    db.session.add(prueba2)
+    db.session.commit()
+
+#Funcion para ordenar los registros por fecha y hora
+def ordenar_por_fecha_y_hora(registros):
+    return sorted(registros, key=lambda x: x.fecha_y_hora,reverse=True)
+
 @app.route('/')
 def index():
-    #obtener todos los registros de la base de datos.
+    #obtener todos los registros ed la base de datos
     registros = Log.query.all()
-    return render_template('index.html',registros=registros)
+    registros_ordenados = ordenar_por_fecha_y_hora(registros)
+    return render_template('index.html',registros=registros_ordenados)
 
 mensajes_log=  []
 # Funciones para agregar mensajes y guardar en la base de datos
@@ -35,7 +47,6 @@ def agregar_mensajes_log(texto):
     db.session.add(nuevo_registro)
     db.session.commit()
 
-# agregar_mensajes_log(json.dumps("test1 liz"))
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80, debug=True)
