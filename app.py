@@ -33,7 +33,8 @@ def index():
     registros_ordenados = ordenar_por_fecha_y_hora(registros)
     return render_template('index.html',registros=registros_ordenados)
 
-mensajes_log=  []
+mensajes_log =  []
+
 # Funciones para agregar mensajes y guardar en la base de datos
 def agregar_mensajes_log(texto):
     mensajes_log.append(texto)
@@ -69,49 +70,6 @@ def recibir_mensajes(req):
     agregar_mensajes_log(req)
 
     return jsonify({'message':'EVENT_RECEIVED'})
-    # try:
-    #     req = request.get_json()
-    #     entry =req['entry'][0]
-    #     changes = entry['changes'][0]
-    #     value = changes['value']
-    #     objeto_mensaje = value['messages']
-
-    #     if objeto_mensaje:
-    #         messages = objeto_mensaje[0]
-
-    #         if "type" in messages:
-    #             tipo = messages["type"]
-
-    #             #Guardar Log en la BD
-    #             agregar_mensajes_log(json.dumps(messages))
-
-    #             if tipo == "interactive":
-    #                 tipo_interactivo = messages["interactive"]["type"]
-
-    #                 if tipo_interactivo == "button_reply":
-    #                     text = messages["interactive"]["button_reply"]["id"]
-    #                     numero = messages["from"]
-
-    #                     enviar_mensajes_whatsapp(text,numero)
-                    
-    #                 elif tipo_interactivo == "list_reply":
-    #                     text = messages["interactive"]["list_reply"]["id"]
-    #                     numero = messages["from"]
-
-    #                     enviar_mensajes_whatsapp(text,numero)
-
-    #             if "text" in messages:
-    #                 text = messages["text"]["body"]
-    #                 numero = messages["from"]
-
-    #                 enviar_mensajes_whatsapp(text,numero)
-
-    #                 #Guardar Log en la BD
-    #                 agregar_mensajes_log(json.dumps(messages))
-
-    #     return jsonify({'message':'EVENT_RECEIVED'})
-    # except Exception as e:
-    #     return jsonify({'message':'EVENT_RECEIVED'})
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80, debug=True)
