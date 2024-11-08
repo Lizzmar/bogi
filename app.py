@@ -81,7 +81,7 @@ def recibir_mensajes(req):
             if "type" in messages:
                 tipo = messages["type"]
 
-                if tipo == "interactive"
+                if tipo == "interactive":
                     return 0
 
                 if "text" in messages:
