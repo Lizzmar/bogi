@@ -38,7 +38,8 @@ mensajes_log =  []
 # Funciones para agregar mensajes y guardar en la base de datos
 def agregar_mensajes_log(texto):
     mensajes_log.append(texto)
-
+    if isinstance(texto, dict):
+        texto = json.dumps(texto)
     #Guardar el mensaje en la base de datos
     nuevo_registro = Log(texto=texto)
     db.session.add(nuevo_registro)
