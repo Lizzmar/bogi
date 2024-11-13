@@ -5,7 +5,6 @@ from datetime import datetime, timezone
 import http.client
 import json
 
-
 app =Flask(__name__)
 #Configruación de la base de datos SQLITE-test
 app.config['SQLALCHEMY_DATABASE_URI']= 'sqlite:///metapython.db'
@@ -95,6 +94,50 @@ def recibir_mensajes(req):
     except Exception as e:
         return jsonify({'message':'EVENT_RECEIVED'})
     
+#funcion para enviar mensajes a whatsapp
+def enviar_mensaje_whatsapp(texto,number):
+    texto =texto.lower()
+
+    if "hola" in texto:
+        data = {
+            "messaging_product": "whatsapp",
+            "recipient_type": "individual",
+            "to": number,
+            "type": "text",
+            "text": {
+                "preview_url": False,
+                "body": "🚀 Hola, ¿Como estás? Bienvenido."
+            }
+        }
+    else:
+        data = {
+            "messaging_product": "whatsapp",
+            "recipient_type": "individual",
+            "to": number,
+            "type": "text",
+            "text": {
+                "preview_url": False,
+                "body": "🚀 Hola, visita mi web anderson-bastidas.com para más información.\n \n📌Por favor, ingresa un número #️⃣ para recibir información.\n \n1️⃣. Información del Curso. ❔\n2️⃣. Ubicación del local. 📍\n3️⃣. Enviar temario en PDF. 📄\n4️⃣. Audio explicando curso. 🎧\n5️⃣. Video de Introducción. ⏯️\n6️⃣. Hablar con AnderCode. 🙋‍♂️\n7️⃣. Horario de Atención. 🕜 \n0️⃣. Regresar al Menú. 🕜"
+            }
+        }
+     #Convertir el diccionaria a formato JSON
+    data=json.dumps(data)
+
+    headers = {
+        "Content-Type" : "application/json",
+        "Authorization" : "Bearer EAAHjoggR6icBOzG0DfA0gT0kascAZB2KcQADGiVG7qyoxg4A6Qw8StA3autt44rr0qnIylXwLKYr7cJdtDYaJZBALXaXnt66zCsLTaVNIlNZAkZAlJnanTCDZABji767iWNZBKYkljkWS0zn5nJV4Rs2fBZAGn6V66Unao5dRfhka6bRZB0heh2mP1Qp7TNZCcZAJcvnwqJbl7B6UF2ngANCSlgvffDgZDZD"
+    }
+
+    connection = http.client.HTTPSConnection("graph.facebook.com")
+
+    try:
+        connection.request("POST","/v20.0/450708958127799/messages", data, headers)
+        response = connection.getresponse()
+        print(response.status, response.reason)
+    except Exception as e:
+        agregar_mensajes_log(json.dumps(e))
+    finally:
+        connection.close()
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80, debug=True)
