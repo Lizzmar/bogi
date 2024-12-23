@@ -131,12 +131,10 @@ def enviar_mensaje_whatsapp(texto,number):
             "messaging_product": "whatsapp",
             "to": number,
             "type": "location",
-            "location": {
-                "latitude": 37.4786342,
-                "longitude": -122.163581,
-                "state": "CA",
-                "street": "1 Hacker Way",
-                "zip": "94025"    
+            "type": "text",
+            "text": {
+                "preview_url": False,
+                "body": "🚀 Hola, opcion 2"
             }
         }
     else:
