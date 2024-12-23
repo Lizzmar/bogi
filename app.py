@@ -1,4 +1,3 @@
-from flask import Flask, render_template # type: ignore
 from flask import Flask, request, jsonify, render_template
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime, timezone
@@ -10,39 +9,45 @@ app =Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI']= 'sqlite:///metapython.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
+#end
 
 #Modelo de la tabla log
 class Log(db.Model):
     id=db.Column(db.Integer, primary_key = True)
     fecha_y_hora = db.Column(db.DateTime, default=datetime.now(timezone.utc))
     texto = db.Column (db.TEXT)
+#end
 
 #Crear la tabla si no existe
 with app.app_context():
     db.create_all()
+#end
 
 #Funcion para ordenar los registros por fecha y hora
 def ordenar_por_fecha_y_hora(registros):
     return sorted(registros, key=lambda x: x.fecha_y_hora,reverse=True)
+#end
 
 @app.route('/')
 def index():
-    #obtener todos los registros ed la base de datos
+    #obtener todos los registros de la base de datos
     registros = Log.query.all()
     registros_ordenados = ordenar_por_fecha_y_hora(registros)
     return render_template('index.html',registros=registros_ordenados)
 
 mensajes_log =  []
 
-# Funciones para agregar mensajes y guardar en la base de datos
+#Funciones para agregar mensajes y guardar en la base de datos
 def agregar_mensajes_log(texto):
     mensajes_log.append(texto)
     if isinstance(texto, dict):
         texto = json.dumps(texto)
+
     #Guardar el mensaje en la base de datos
     nuevo_registro = Log(texto=texto)
     db.session.add(nuevo_registro)
     db.session.commit()
+    #end
 
 #Token de verificación para la configuración
 TOKEN_GAMLP = "GAMLP"
@@ -66,7 +71,6 @@ def verificar_token(req):
         return jsonify({'error':'Token Invalido'}),401
 
 def recibir_mensajes(req):
-    # req = request.get_json()
     try:
         req = request.get_json()
         entry = req['entry'][0]
@@ -94,6 +98,7 @@ def recibir_mensajes(req):
         return jsonify({'message':'EVENT_RECEIVED'})
     except Exception as e:
         return jsonify({'message':'EVENT_RECEIVED'})
+#end
     
 #funcion para enviar mensajes a whatsapp
 def enviar_mensaje_whatsapp(texto,number):
@@ -121,16 +126,16 @@ def enviar_mensaje_whatsapp(texto,number):
                 "body": "🚀 Hola, visita mi web anderson-bastidas.com para más información.\n \n📌Por favor, ingresa un número #️⃣ para recibir información.\n \n1️⃣. Información del Curso. ❔\n2️⃣. Ubicación del local. 📍\n3️⃣. Enviar temario en PDF. 📄\n4️⃣. Audio explicando curso. 🎧\n5️⃣. Video de Introducción. ⏯️\n6️⃣. Hablar con AnderCode. 🙋‍♂️\n7️⃣. Horario de Atención. 🕜 \n0️⃣. Regresar al Menú. 🕜"
             }
         }
-     #Convertir el diccionaria a formato JSON
+    #Convertir el diccionaria a formato JSON
     data=json.dumps(data)
-
+ 
+    
+    #Los Header para la conexión desde la API de Facebook
     headers = {
         "Content-Type" : "application/json",
-        "Authorization" : "Bearer EAAHjoggR6icBO4IzN0n25IUUlk9BEvWkMHInZA1czXZBiBLTQnZC24WClwct0Lz6VAYWLsAkLPIha90GR4JqEXssth4X4XLw5nLQURBf0hqAP828ay8kZC9Ik16KCZB0b1ZBm8hJCHHZCSktfd278LSWn7RZBb4ySgmwGPNONubyCWpipZCeKoqlXUD9TVfZAlqN6zoBHS7eko5Nivsbq5LDQ3bjElZAQZDZD"
+        "Authorization" : "Bearer EAAHjoggR6icBOzG0DfA0gT0kascAZB2KcQADGiVG7qyoxg4A6Qw8StA3autt44rr0qnIylXwLKYr7cJdtDYaJZBALXaXnt66zCsLTaVNIlNZAkZAlJnanTCDZABji767iWNZBKYkljkWS0zn5nJV4Rs2fBZAGn6V66Unao5dRfhka6bRZB0heh2mP1Qp7TNZCcZAJcvnwqJbl7B6UF2ngANCSlgvffDgZDZD"
     }
-
     connection = http.client.HTTPSConnection("graph.facebook.com")
-
     try:
         connection.request("POST","/v20.0/450708958127799/messages", data, headers)
         response = connection.getresponse()
