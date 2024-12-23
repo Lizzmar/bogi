@@ -132,10 +132,7 @@ def enviar_mensaje_whatsapp(texto,number):
             "to": number,
             "type": "location",
             "location": {
-                "city": "Menlo Park",
-                "country": "United States",
                 "latitude": 37.4786342,
-                "located_in": "166793820034304",
                 "longitude": -122.163581,
                 "state": "CA",
                 "street": "1 Hacker Way",
