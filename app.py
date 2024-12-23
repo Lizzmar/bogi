@@ -115,6 +115,33 @@ def enviar_mensaje_whatsapp(texto,number):
                 "body": "🚀 Hola, ¿Como estás? Bienvenido."
             }
         }
+    elif "1" in texto:
+        data = {
+            "messaging_product": "whatsapp",
+            "recipient_type": "individual",
+            "to": number,
+            "type": "text",
+            "text": {
+                "preview_url": False,
+                "body": "🚀 Hola, opcion 1"
+            }
+        }
+    elif "2" in texto:
+        data = {
+            "messaging_product": "whatsapp",
+            "to": number,
+            "type": "location",
+            "location": {
+                "city": "Menlo Park",
+                "country": "United States",
+                "latitude": 37.4786342,
+                "located_in": "166793820034304",
+                "longitude": -122.163581,
+                "state": "CA",
+                "street": "1 Hacker Way",
+                "zip": "94025"    
+            }
+        }
     else:
         data = {
             "messaging_product": "whatsapp",
