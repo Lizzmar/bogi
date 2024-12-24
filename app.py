@@ -158,7 +158,7 @@ def enviar_mensaje_whatsapp(texto,number):
     #Los Header para la conexión desde la API de Facebook
     headers = {
         "Content-Type" : "application/json",
-        "Authorization" : "Bearer EAAHjoggR6icBO5kKDup7hX8ZBImF6ZCJ774PRQWPNzvxuZBuWGiByJBULK3D0pxM8d0xSwSsaFG85jIB5NYtQb363LCTyHsvYAgzfWuywPuBaXUJO1g0pZAAK6xePDWUjhZA4KkYoEeAVj1jj7oHEWJrirxtp8o0zfXHrLqkdZC3Gs5iJKl3YfOYaZCgjSGNqSGmFCiUcOEFEFjZADl3ALtp77t2"
+        "Authorization" : "Bearer EAAHjoggR6icBOZBh1SDdkb8N0McUyqt22pGnZAmyzmhZBJX0vHS5xKKlGi03BYmTtZBqmWnPyqpXHApleuiDZBp7BXJ2Ke4RcavA9bwKLAbkGEjXL4b04Wf8GXJ5DGBGjcrRDbqr2kIfVogYYgQshNhh2FEJT5OYJubvdpyVijdiyTPCODsrl8ksjxyFl69PdLM8ptyDPKkZClAJjrehsngYXIZCDjfRogefpgRZA55O"
     }
     connection = http.client.HTTPSConnection("graph.facebook.com")
     try:
