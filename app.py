@@ -158,21 +158,21 @@ def enviar_mensaje_whatsapp(texto,number):
                             "type":"reply",
                             "reply":{
                                 "title":"Si",
-                                "payload":"si"
+                                "id":"btnsi"
                             }
                         },
                         {
                             "type":"reply",
                             "reply":{
                                 "title":"No",
-                                "payload":"no"
+                                "id":"btnno"
                             }
                         },
                         {
                             "type":"reply",
                             "reply":{
                                 "title":"Tal vez",
-                                "payload":"tal vez"
+                                "id":"btntalvez"
                             }
                         }
                     ]
