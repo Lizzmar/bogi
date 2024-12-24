@@ -138,6 +138,47 @@ def enviar_mensaje_whatsapp(texto,number):
                 "address": "1 Hacker Way",   
             }, 
         }
+    elif "boton" in texto:
+        data = {
+            "messaging_product": "whatsapp",
+            "recipient_type": "individual",
+            "to": number,
+            "type": "interactive",
+            "interactive": {
+                "type": "button",
+                "body":{
+                    "text":"¿Confirmas tu registro?"
+                },
+                "footer":{
+                    "text":"Selecciona una opción"
+                },
+                "action":{
+                    "buttons":[
+                        {
+                            "type":"reply",
+                            "reply":{
+                                "title":"Si",
+                                "payload":"si"
+                            }
+                        },
+                        {
+                            "type":"reply",
+                            "reply":{
+                                "title":"No",
+                                "payload":"no"
+                            }
+                        },
+                        {
+                            "type":"reply",
+                            "reply":{
+                                "title":"Tal vez",
+                                "payload":"tal vez"
+                            }
+                        }
+                    ]
+                }
+            }
+        }
     else:
         data = {
             "messaging_product": "whatsapp",
@@ -151,7 +192,6 @@ def enviar_mensaje_whatsapp(texto,number):
         }
     #Convertir el diccionaria a formato JSON
     data=json.dumps(data)
- 
     
     #Los Header para la conexión desde la API de Facebook
     headers = {
