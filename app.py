@@ -84,7 +84,7 @@ def recibir_mensajes(req):
             if "type" in messages:
                 tipo = messages["type"]
                 #Guardar log en la BD
-                agregar_mensajes_log(json.dumps(tipo))
+                agregar_mensajes_log(json.dumps(messages))
                 if tipo == "interactive":
                     return 0
 
@@ -93,7 +93,7 @@ def recibir_mensajes(req):
                     numero = messages["from"]
 
                     enviar_mensaje_whatsapp(text,numero)
-                    
+
                     #Guardar log en la BD
                     agregar_mensajes_log(json.dumps(messages))
 
