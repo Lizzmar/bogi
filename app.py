@@ -91,9 +91,8 @@ def recibir_mensajes(req):
                     text = messages["text"]["body"]
                     numero = messages["from"]
 
-                    enviar_mensaje_whatsapp(text,numero)
-                    # agregar_mensajes_log(json.dumps(text))
-                    # agregar_mensajes_log(json.dumps(numero))
+                    enviar_mensaje_whatsapp(json.dumps(text,numero))
+                    agregar_mensajes_log(messages)
 
         return jsonify({'message':'EVENT_RECEIVED'})
     except Exception as e:
@@ -190,6 +189,7 @@ def enviar_mensaje_whatsapp(texto,number):
                 "body": "🚀 Hola, visita mi web anderson-bastidas.com para más información.\n \n📌Por favor, ingresa un número #️⃣ para recibir información.\n \n1️⃣. Información del Curso. ❔\n2️⃣. Ubicación del local. 📍\n3️⃣. Enviar temario en PDF. 📄\n4️⃣. Audio explicando curso. 🎧\n5️⃣. Video de Introducción. ⏯️\n6️⃣. Hablar con AnderCode. 🙋‍♂️\n7️⃣. Horario de Atención. 🕜 \n0️⃣. Regresar al Menú. 🕜"
             }
         }
+
     #Convertir el diccionaria a formato JSON
     data=json.dumps(data)
     
