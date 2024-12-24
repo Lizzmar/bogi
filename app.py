@@ -133,11 +133,9 @@ def enviar_mensaje_whatsapp(texto,number):
             "type": "location",
             "location": {
                 "latitude": "-16.517906810963066",
-                "located_in": "166793820034304",
                 "longitude": "-68.06603843725476",
-                "state": "CA",
-                "street": "1 Hacker Way",
-                "zip": "94025"    
+                "name": "CA",
+                "address": "1 Hacker Way",   
             }, 
         }
     else:
