@@ -196,7 +196,7 @@ def enviar_mensaje_whatsapp(texto,number):
             "type": "text",
             "text": {
                 "preview_url": False,
-                "Body": "Muchas gracias por aceptar"
+                "body": "Muchas gracias por aceptar"
             }
         }
     elif "btnno" in texto:
@@ -207,7 +207,7 @@ def enviar_mensaje_whatsapp(texto,number):
             "type": "text",
             "text": {
                 "preview_url": False,
-                "Body": "Es una lastima"
+                "body": "Es una lastima"
             }
         }
     else:
