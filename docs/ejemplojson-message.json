@@ -1,0 +1,17 @@
+{
+    "context": {
+        "from": "15551577376",
+        "id": "wamid.HBgLNTkxNzMwMzgxMTgVAgARGBI2MzVENTMxODEzNUQwMThBOEQA"
+    },
+    "from": "59173038118",
+    "id": "wamid.HBgLNTkxNzMwMzgxMTgVAgASGBYzRUIwOEEwQTE0MzE2ODI2QjA5NDJEAA==",
+    "timestamp": "1735055253",
+    "type": "interactive",
+    "interactive": {
+        "type": "button_reply",
+        "button_reply": {
+            "id": "btnsi",
+            "title": "Si"
+        }
+    }
+}
