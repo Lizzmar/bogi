@@ -94,6 +94,12 @@ def recibir_mensajes(req):
                         numero = messages["from"]
 
                         enviar_mensaje_whatsapp(text,numero)
+                    
+                    elif tipo_interactive == "list_reply":
+                        text = messages["interactive"]["list_reply"]["id"]
+                        numero = messages["from"]
+
+                        enviar_mensaje_whatsapp(text,numero)
 
                 if "text" in messages:
                     text = messages["text"]["body"]
@@ -259,6 +265,28 @@ def enviar_mensaje_whatsapp(texto,number):
                 }
             }
         }
+    elif "btncompra" in texto:
+        data = {
+            "messaging_product": "whatsapp",
+            "recipient_type": "individual",
+            "to": number,
+            "type": "text",
+            "text": {
+                "preview_url": False,
+                "body": "Los mejores articulos de tecnologia"
+            }
+        }
+    elif "btnvender" in texto:
+        data = {
+            "messaging_product": "whatsapp",
+            "recipient_type": "individual",
+            "to": number,
+            "type": "text",
+            "text": {
+                "preview_url": False,
+                "body": "Excelente, vende lo que ya no estes usando"
+            }
+        }     
     else:
         data = {
             "messaging_product": "whatsapp",

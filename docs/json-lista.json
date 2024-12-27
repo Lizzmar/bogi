@@ -1,0 +1,18 @@
+{
+    "context": {
+        "from": "15551577376",
+        "id": "wamid.HBgLNTkxNzMwMzgxMTgVAgARGBJGMUY5NTRBOEMyQTExN0FDNDAA"
+    },
+    "from": "59173038118",
+    "id": "wamid.HBgLNTkxNzMwMzgxMTgVAgASGBYzRUIwNEIwMUUxQkM5Mzg1NzJDODc1AA==",
+    "timestamp": "1735307787",
+    "type": "interactive",
+    "interactive": {
+        "type": "list_reply",
+        "list_reply": {
+            "id": "btncompra",
+            "title": "Comprar",
+            "description": "Compra los mejores articulos de tecnologia"
+        }
+    }
+}
