@@ -35,6 +35,10 @@ def index():
     registros_ordenados = ordenar_por_fecha_y_hora(registros)
     return render_template('index.html',registros=registros_ordenados)
 
+@app.route('/hoggi_web')
+def hoggi_web():
+    return render_template('hoggi_web/index.html')
+
 mensajes_log =  []
 
 #Funciones para agregar mensajes y guardar en la base de datos
