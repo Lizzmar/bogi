@@ -3,6 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime, timezone
 import http.client
 import json
+import os
 
 app =Flask(__name__)
 #Configruación de la base de datos SQLITE-test
