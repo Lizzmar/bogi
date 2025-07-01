@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify, render_template
+from flask import Flask, request, jsonify, render_template, send_from_directory
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime, timezone
 import http.client
@@ -36,9 +36,9 @@ def index():
     registros_ordenados = ordenar_por_fecha_y_hora(registros)
     return render_template('index.html',registros=registros_ordenados)
 
-@app.route('/hoggi_web')
-def hoggi_web():
-    return render_template('hoggi_web/index.html')
+@app.route('/hoggi_web/<path:filename>')
+def custom_static(filename):
+    return send_from_directory('hoggi_web', filename)
 
 mensajes_log =  []
 
