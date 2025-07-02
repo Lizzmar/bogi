@@ -31,7 +31,9 @@ def ordenar_por_fecha_y_hora(registros):
 
 @app.route('/')
 def home():
-    return render_template('index.html')
+    registros = Log.query.all()
+    registros_ordenados = ordenar_por_fecha_y_hora(registros)
+    return render_template('index.html', registros=registros_ordenados)
 
 @app.route('/politica-de-privacidad')
 def privacidad():
