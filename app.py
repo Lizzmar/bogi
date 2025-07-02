@@ -41,9 +41,9 @@ def privacidad():
 def terminos():
     return render_template('terminos-y-condiciones.html')
 
-@app.route('/hoggi_web/<path:filename>')
+@app.route('/templates/<path:filename>')
 def custom_static(filename):
-    return send_from_directory('hoggi_web', filename)
+    return send_from_directory('templates', filename)
 
 mensajes_log =  []
 
