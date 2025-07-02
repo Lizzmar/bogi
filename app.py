@@ -30,11 +30,16 @@ def ordenar_por_fecha_y_hora(registros):
 #end
 
 @app.route('/')
-def index():
-    #obtener todos los registros de la base de datos
-    registros = Log.query.all()
-    registros_ordenados = ordenar_por_fecha_y_hora(registros)
-    return render_template('index.html',registros=registros_ordenados)
+def home():
+    return render_template('index.html')
+
+@app.route('/politica-de-privacidad')
+def privacidad():
+    return render_template('politica-de-privacidad.html')
+
+@app.route('/terminos-y-condiciones')
+def terminos():
+    return render_template('terminos-y-condiciones.html')
 
 @app.route('/hoggi_web/<path:filename>')
 def custom_static(filename):
