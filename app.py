@@ -29,20 +29,6 @@ def ordenar_por_fecha_y_hora(registros):
     return sorted(registros, key=lambda x: x.fecha_y_hora,reverse=True)
 #end
 
-@app.route('/')
-def home():
-    registros = Log.query.all()
-    registros_ordenados = ordenar_por_fecha_y_hora(registros)
-    return render_template('index.html', registros=registros_ordenados)
-
-@app.route('/politica-de-privacidad')
-def privacidad():
-    return render_template('politica-de-privacidad.html')
-
-@app.route('/terminos-y-condiciones')
-def terminos():
-    return render_template('terminos-y-condiciones.html')
-
 @app.route('/templates/<path:filename>')
 def custom_static(filename):
     return send_from_directory('templates', filename)
