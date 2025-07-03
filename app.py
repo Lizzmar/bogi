@@ -47,6 +47,10 @@ def terminos():
 def custom_static(filename):
     return send_from_directory('templates', filename)
 
+@app.route('/hoggi_web/<path:filename>')
+def hoggi_web_static(filename):
+    return send_from_directory('hoggi_web', filename)
+
 mensajes_log =  []
 
 #Funciones para agregar mensajes y guardar en la base de datos
